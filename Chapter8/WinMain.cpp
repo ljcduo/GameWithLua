@@ -32,7 +32,8 @@ WindowProc(HWND hWnd, unsigned uMsg, WPARAM wParam, LPARAM lParam)
             switch (wParam) { 
 
                 case VK_INSERT:
-
+					
+					// 插入键退出应用程序
                     // exit the program on insert
 
                     DestroyWindow(hWnd);

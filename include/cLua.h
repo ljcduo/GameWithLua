@@ -15,13 +15,13 @@ public:
 	virtual ~cLua();
 
 	bool		RunScript(const char *pFilename);
-	bool		RunString(const char *pCommand);	//ÔËĞĞ×Ö·û´®ÃüÁî
-	const char *GetErrorString(void);				//»ñµÃ´íÎó×Ö·û´®
+	bool		RunString(const char *pCommand);	//è¿è¡Œå­—ç¬¦ä¸²å‘½ä»¤
+	const char *GetErrorString(void);				//è·å¾—é”™è¯¯å­—ç¬¦ä¸²
 	bool		AddFunction(const char *pFunctionName, LuaFunctionType pFunction);
-	const char *GetStringArgument(int num, const char *pDefault=NULL);	//»ñµÃLuaGlueº¯ÊıµÄ²ÎÊı£¬·µ»ØÖ¸Ïò¿ÕÖµÖÕÖ¹×Ö·û´®µÄÖ¸Õë»òÕßNULL±íÊ¾²ÎÊı´íÎó£¬numÖ¸¶¨²ÎÊıµÄÎ»ÖÃ£¨´Ó1¿ªÊ¼£©
-	double		GetNumberArgument(int num, double dDefault=0.0);		//»ñµÃLuaGlueº¯ÊıµÄ²ÎÊı£¬·µ»ØË«¾«¶È¸¡µãÊı»òÕß0.0±íÊ¾Ã»ÓĞ²ÎÊı£¬numÖ¸¶¨²ÎÊıµÄÎ»ÖÃ£¨´Ó1¿ªÊ¼£©
-	void		PushString(const char *pString);	//ÏòLuaÕ»´æÈë·µ»ØÖµ
-	void		PushNumber(double value);			//ÏòLuaÕ»´æÈë·µ»ØÖµ
+	const char *GetStringArgument(int num, const char *pDefault=NULL);	//è·å¾—LuaGlueå‡½æ•°çš„å‚æ•°ï¼Œè¿”å›æŒ‡å‘ç©ºå€¼ç»ˆæ­¢å­—ç¬¦ä¸²çš„æŒ‡é’ˆæˆ–è€…NULLè¡¨ç¤ºå‚æ•°é”™è¯¯ï¼ŒnumæŒ‡å®šå‚æ•°çš„ä½ç½®ï¼ˆä»1å¼€å§‹ï¼‰
+	double		GetNumberArgument(int num, double dDefault=0.0);		//è·å¾—LuaGlueå‡½æ•°çš„å‚æ•°ï¼Œè¿”å›åŒç²¾åº¦æµ®ç‚¹æ•°æˆ–è€…0.0è¡¨ç¤ºæ²¡æœ‰å‚æ•°ï¼ŒnumæŒ‡å®šå‚æ•°çš„ä½ç½®ï¼ˆä»1å¼€å§‹ï¼‰
+	void		PushString(const char *pString);	//å‘Luaæ ˆå­˜å…¥è¿”å›å€¼
+	void		PushNumber(double value);			//å‘Luaæ ˆå­˜å…¥è¿”å›å€¼
 
 	void		SetErrorHandler(void(*pErrHandler)(const char *pError)) {m_pErrorHandler = pErrHandler;}
 

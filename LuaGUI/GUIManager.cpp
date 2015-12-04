@@ -66,14 +66,14 @@ bool CGUIManager::Init(cLua *pContext)
 {
 	m_LuaState = pContext;
 
-	// ³õÊ¼»¯GUIËù±ØĞèµÄglueº¯Êı
+	// åˆå§‹åŒ–GUIæ‰€å¿…éœ€çš„glueå‡½æ•°
 	// init the glue functions required for the GUI
 	for(int i=0; GUIGlue[i].name; i++)
 	{
 		pContext->AddFunction(GUIGlue[i].name, GUIGlue[i].func);
 	}
 
-	// ´´½¨Æô¶¯GUI£¬ÕâÀïÓĞËùÓĞÈ«¾Ö½Å±¾Öµ¶¨Òå¸øÆäËülua½Å±¾¡£ËüĞèÒªÔËĞĞ¡£
+	// åˆ›å»ºå¯åŠ¨GUIï¼Œè¿™é‡Œæœ‰æ‰€æœ‰å…¨å±€è„šæœ¬å€¼å®šä¹‰ç»™å…¶å®ƒluaè„šæœ¬ã€‚å®ƒéœ€è¦è¿è¡Œã€‚
 	// create the startup GUI, this has all the global script
 	// values defined for other lua scripts. It needs to be run.
 	StartGUI("StartGUI.lua");

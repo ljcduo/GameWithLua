@@ -1,9 +1,9 @@
-// ¼òµ¥Lua¿ØÖÆÌ¨£¨ÓĞÏŞµÄ´Ê»ã£©
-// Ê¹ÓÃcLua¶ÔÏóºÍLua¿â
+// ç®€å•Luaæ§åˆ¶å°ï¼ˆæœ‰é™çš„è¯æ±‡ï¼‰
+// ä½¿ç”¨cLuaå¯¹è±¡å’ŒLuaåº“
 // Simple Lua console with limited vocabulary
 // Using cLua object and Lua library
 
-// °üº¬±ê×¼ÏµÍ³Í·ÎÄ¼ş
+// åŒ…å«æ ‡å‡†ç³»ç»Ÿå¤´æ–‡ä»¶
 // include the standard system headers.
 #include <stdio.h>
 #include <string.h>
@@ -26,7 +26,7 @@ const char *GetCommand(void)
 
 void main(void)
 {
-	// ´òÓ¡±êÓï
+	// æ‰“å°æ ‡è¯­
 	// print the banner.
 	puts("Lua Console (c) 2004 Charles River Media");
 	puts("Enter Lua commands at the prompt, [QUIT] to exit\n\n");
@@ -35,19 +35,19 @@ void main(void)
 
 	pLua->AddFunction("Version", _Version);
 
-	// ´¦ÀíÃüÁî
+	// å¤„ç†å‘½ä»¤
 	// process commands
 	const char *pCommand = GetCommand();
 	while(stricmp(pCommand, "QUIT") != 0)
 	{
-		// ´«µİ×Ö·û´®¸øcLua
+		// ä¼ é€’å­—ç¬¦ä¸²ç»™cLua
 		// pass the string to cLua
 		if(!pLua->RunString(pCommand))
 		{
 			printf("ERROR:%s\n", pLua->GetErrorString());
 		}
 
-		// »ñµÃÏÂÒ»¸öÃüÁî
+		// è·å¾—ä¸‹ä¸€ä¸ªå‘½ä»¤
 		// get next command
 		pCommand = GetCommand();
 	}

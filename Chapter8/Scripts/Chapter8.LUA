@@ -5,7 +5,7 @@
 --  filename: Chapter7.lua
 --  author:   Paul Schuytema
 --  created:  Feb 6, 2005
---  descrip:  Example
+--  descrip:  Example£¨Ê¾Àý£©
 --=======================================--
 
 SetEventHandler("Chapter8Event")

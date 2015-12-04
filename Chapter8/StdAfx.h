@@ -1,3 +1,4 @@
+// 忽略关于长名字/调试建立的警告
 // disable MS warning about long names/debug builds
 #pragma warning ( disable : 4786 )
 

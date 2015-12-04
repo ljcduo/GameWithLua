@@ -1,16 +1,16 @@
-// ¼òµ¥Lua¿ØÖÆÌ¨£¨ÓĞÏŞµÄ´Ê»ã£©
+// ç®€å•Luaæ§åˆ¶å°ï¼ˆæœ‰é™çš„è¯æ±‡ï¼‰
 // Simple Lua console with limited vocabulary
 
-// °üº¬±ê×¼ÏµÍ³Í·ÎÄ¼ş
+// åŒ…å«æ ‡å‡†ç³»ç»Ÿå¤´æ–‡ä»¶
 // include the standard system headers.
 #include <stdio.h>
 #include <string.h>
 
 /*
-** °üº¬LuaÍ·ÎÄ¼ş¡£
-**  ×¢ÒâËüÃÇÊÇCÓïÑÔÍ·ÎÄ¼ş¡£
-**  ÒòÎªÕâĞ©ÊÇC++³ÌĞò£¬ÎÒÃÇĞèÒªÈÃC++
-**  ±àÒëÆ÷ÖªµÀÕâ¸öÒıÓÃÔ­ĞÍºÍÊı¾İ²»»áÓĞC++Ãû³Æ¿Õ¼ä´¦Àí
+** åŒ…å«Luaå¤´æ–‡ä»¶ã€‚
+**  æ³¨æ„å®ƒä»¬æ˜¯Cè¯­è¨€å¤´æ–‡ä»¶ã€‚
+**  å› ä¸ºè¿™äº›æ˜¯C++ç¨‹åºï¼Œæˆ‘ä»¬éœ€è¦è®©C++
+**  ç¼–è¯‘å™¨çŸ¥é“è¿™ä¸ªå¼•ç”¨åŸå‹å’Œæ•°æ®ä¸ä¼šæœ‰C++åç§°ç©ºé—´å¤„ç†
 ** Include the Lua headers. 
 **	Note that they are "C" language headers.
 **	Since we are C++ program, we need to let the C++ compiler 
@@ -24,9 +24,9 @@ extern "C" {
 }
 
 /*
-** ÕâÊÇÒ»¸öLuaGlueº¯ÊıµÄÀı×Ó¡£
-** Õâ¸öº¯Êı»á±»Lua»·¾³µ÷ÓÃ¡£
-** ÔÙ´Î£¬ÒòÎªLuaÊÇANSI CĞ´µÄ£¬ÎÒÃÇĞèÒª¹ØµôC++Ãû³Æ¿Õ¼äº¯Êı(extern "C")
+** è¿™æ˜¯ä¸€ä¸ªLuaGlueå‡½æ•°çš„ä¾‹å­ã€‚
+** è¿™ä¸ªå‡½æ•°ä¼šè¢«Luaç¯å¢ƒè°ƒç”¨ã€‚
+** å†æ¬¡ï¼Œå› ä¸ºLuaæ˜¯ANSI Cå†™çš„ï¼Œæˆ‘ä»¬éœ€è¦å…³æ‰C++åç§°ç©ºé—´å‡½æ•°(extern "C")
 ** This is an example of a LuaGlue function
 ** The function will be called from the Lua Environment
 ** Again, since Lua is written in ANSI C, we need to 
@@ -42,8 +42,8 @@ extern "C" int _Version(lua_State *L)
 }
 
 /*
-**¡¡ÕâÊÇÎÒÃÇ¹´×¡"Glue"º¯ÊıµÄµØ·½¡£
-** Õâ¸ö³ÌĞò»á×¢²áÃ¿Ò»¸ö¶¨Òåº¯Êı£¬²¢ÇÒÈÃËüÃÇ±»Luaµ÷ÓÃ
+**ã€€è¿™æ˜¯æˆ‘ä»¬å‹¾ä½"Glue"å‡½æ•°çš„åœ°æ–¹ã€‚
+** è¿™ä¸ªç¨‹åºä¼šæ³¨å†Œæ¯ä¸€ä¸ªå®šä¹‰å‡½æ•°ï¼Œå¹¶ä¸”è®©å®ƒä»¬è¢«Luaè°ƒç”¨
 ** This is where we hook up out "Glue" functions. 
 ** The program will register each of the defined functions 
 ** and allow them to be called from Lua.
@@ -66,14 +66,14 @@ const char *GetCommand(void)
 void main(void)
 {
 	// print the banner.
-	// ´òÓ¡±êÓï
+	// æ‰“å°æ ‡è¯­
 	puts("Lua Console (basic) (c) 2004 Charles River Media");
 	puts("Enter Lua commands at the prompt, [QUIT] to exit\n\n");
 
 	// Init the Lua environment
-	// ³õÊ¼»¯Lua»·¾³
+	// åˆå§‹åŒ–Luaç¯å¢ƒ
 	lua_State *pLuaState = lua_open();
-	// ÕâÀï³õÊ¼»¯ËùÓĞLua 5.0.2 °æ±¾µÄ³ÌĞò¿â£¬ÕâÑù¿ÉÒÔÈÃLua½Å±¾·ÃÎÊËùÓĞµÄº¯Êı
+	// è¿™é‡Œåˆå§‹åŒ–æ‰€æœ‰Lua 5.0.2 ç‰ˆæœ¬çš„ç¨‹åºåº“ï¼Œè¿™æ ·å¯ä»¥è®©Luaè„šæœ¬è®¿é—®æ‰€æœ‰çš„å‡½æ•°
 	luaopen_base(pLuaState);
 	luaopen_io(pLuaState);
 	luaopen_string(pLuaState);
@@ -81,7 +81,7 @@ void main(void)
 	luaopen_debug(pLuaState);
 	luaopen_table(pLuaState);
 
-	// Õâ¸öÑ­»·Ê¹ÓÃÎÒÃÇÌá¹©µÄÃû×ÖÀ´×¢²áÎÒÃÇÔÚLua»·¾³Ê¹ÓÃµÄËùÓĞLuaGlueº¯Êı
+	// è¿™ä¸ªå¾ªç¯ä½¿ç”¨æˆ‘ä»¬æä¾›çš„åå­—æ¥æ³¨å†Œæˆ‘ä»¬åœ¨Luaç¯å¢ƒä½¿ç”¨çš„æ‰€æœ‰LuaGlueå‡½æ•°
 	// this loop registers all of our LuaGlue functions with
 	// the Lua Environment using the names we provide.
 	for(int i=0; ConsoleGlue[i].name; i++)
@@ -90,30 +90,30 @@ void main(void)
 	}
 
 
-	// ´¦ÀíÃüÁî
+	// å¤„ç†å‘½ä»¤
 	// process commands
 	const char *pCommand = GetCommand();
 	while(stricmp(pCommand, "QUIT") != 0)
 	{
-		// ·¢ËÍÃüÁîµ½lua»·¾³
+		// å‘é€å‘½ä»¤åˆ°luaç¯å¢ƒ
 		// send command to the lua environment
 		if (luaL_loadbuffer(pLuaState, pCommand, strlen(pCommand), NULL) == 0)
 		{
 			if(lua_pcall(pLuaState, 0, LUA_MULTRET, 0) != 0)
 			{
-				// ÔËĞĞÃüÁîÊ±·¢Éú´íÎó
+				// è¿è¡Œå‘½ä»¤æ—¶å‘ç”Ÿé”™è¯¯
 				// error on running the command
 				printf("ERROR:%s\n", luaL_checkstring(pLuaState, -1));
 			}
 		}
 		else
 		{
-			// ÔØÈëÃüÁîÊ±·¢Éú´íÎó
+			// è½½å…¥å‘½ä»¤æ—¶å‘ç”Ÿé”™è¯¯
 			//error loading the command
 			printf("ERROR:%s\n", luaL_checkstring(pLuaState, -1));
 		}
 
-		// È¡µÃÏÂÒ»¸öÃüÁî
+		// å–å¾—ä¸‹ä¸€ä¸ªå‘½ä»¤
 		// get next command
 		pCommand = GetCommand();
 	}

@@ -128,7 +128,7 @@ bool CBase::Init(HINSTANCE hInstance, const char *szClass, const char *szCaption
 CBase::~CBase()
 {
 
-	// Èç¹ûdebug´°¿Ú´ò¿ªÁË£¬´¢´æËüµÄÎ»ÖÃÓÃÓÚÏÂÒ»´ÎÔËĞĞ
+	// å¦‚æœdebugçª—å£æ‰“å¼€äº†ï¼Œå‚¨å­˜å®ƒçš„ä½ç½®ç”¨äºä¸‹ä¸€æ¬¡è¿è¡Œ
 	// if the debug window is open, save its position for next run
 	if(m_hConsole && IsWindow(m_hConsole))
 	{
