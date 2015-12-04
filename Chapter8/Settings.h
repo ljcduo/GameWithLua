@@ -1,4 +1,4 @@
-// Settings.h: Settings��Ľӿڡ�
+﻿// Settings.h: Settings类的接口。
 // Settings.h: interface for the Settings class.
 //
 //////////////////////////////////////////////////////////////////////

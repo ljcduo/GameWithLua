@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "Base.h"
 
 static char szClass[] = "TestClass";
@@ -33,7 +33,7 @@ WindowProc(HWND hWnd, unsigned uMsg, WPARAM wParam, LPARAM lParam)
 
                 case VK_INSERT:
 					
-					// ²åÈë¼üÍË³öÓ¦ÓÃ³ÌĞò
+					// æ’å…¥é”®é€€å‡ºåº”ç”¨ç¨‹åº
                     // exit the program on insert
 
                     DestroyWindow(hWnd);

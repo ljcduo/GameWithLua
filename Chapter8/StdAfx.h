@@ -1,4 +1,4 @@
-// ºöÂÔ¹ØÓÚ³¤Ãû×Ö/µ÷ÊÔ½¨Á¢µÄ¾¯¸æ
+ï»¿// å¿½ç•¥å…³äºé•¿åå­—/è°ƒè¯•å»ºç«‹çš„è­¦å‘Š
 // disable MS warning about long names/debug builds
 #pragma warning ( disable : 4786 )
 
