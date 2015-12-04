@@ -1,3 +1,4 @@
+﻿// GUIObject.h: CGUIObject类的接口
 // GUIObject.h: interface for the CGUIObject class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -12,6 +13,7 @@
 class Sprite;
 class Font;
 
+// 这些是当期定义的GUI对象运行时的名字。
 // These are the currently define GUI object run time names
 extern const char *kpBaseName;
 extern const char *kpSpriteName;

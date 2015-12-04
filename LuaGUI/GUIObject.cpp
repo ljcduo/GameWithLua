@@ -1,3 +1,4 @@
+﻿// GUIObject.cpp: CGUIObject类的实现
 // GUIObject.cpp: implementation of the CGUIObject class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -15,6 +16,7 @@ const char *kpBaseName   = "BASE";
 std::string CGUIObject::m_sTexturePath = "";
 
 //////////////////////////////////////////////////////////////////////
+// 构造/析构
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
@@ -66,6 +68,7 @@ bool CGUIObject::SetTexture(char *pTextureName, bool bSetPos)
 	}
 	else
 	{
+		// 重设位置和模糊
 		// reset the location and dims
 		float w, h;
 		w = (float) m_rScreen.right - m_rScreen.left;
@@ -90,11 +93,12 @@ void CGUIObject::SetPosition(float fx, float fy, float fw, float fh, float z)
 	{
 		int tw, th;
 		m_pTexture->GetTexture()->GetTexture(0)->DimensionsGet(tw, th);
+					// 获得像素大小平移标记
 		if(fw < 0)	// get for pixel size translation flag
 		{
 			fw = (float)tw / (-fw);
 		}
-
+					// 获得像素大小平移标记
 		if(fh < 0)	// get for pixel size translation flag
 		{
 			fh = (float)th / (-fh);
@@ -104,6 +108,7 @@ void CGUIObject::SetPosition(float fx, float fy, float fw, float fh, float z)
 		m_pTexture->DimensionsSet(fw*w,fh*h);
 	}
 
+	// 设置屏幕矩形
 	// set screen rect
 	m_rScreen.top		= (long) ((fy*h)+0.49f);
 	m_rScreen.left		= (long) (fx*w);
@@ -121,6 +126,7 @@ void CGUIObject::SetPosition(float fx, float fy, float fw, float fh, float z)
 		m_pTexture->SetDimensions(fw, fh);
 	}
 
+	// 设置屏幕矩形
 	// set screen rect
 	m_rScreen.top		= (long) (fy+0.49f);
 	m_rScreen.left		= (long) (fx);
@@ -139,6 +145,7 @@ bool CGUIObject::Render(void)
 
 bool CGUIObject::SetFont(char *pFontName, float normalSize)
 {
+	// 在这里放置任何东西
 	// replace anything that was there
 	SAFE_DELETE(m_pFont);
 
@@ -173,6 +180,7 @@ void CGUIObject::ResChangeNotify(void)
 		m_pTexture->DimensionsSet(m_fNormWidth*w,m_fNormHeight*h);
 	}
 
+	// 设置屏幕矩形
 	// set screen rect
 	m_rScreen.top		= (long) (m_vNormPosition.y*h);
 	m_rScreen.left		= (long) (m_vNormPosition.x*w);

@@ -1,3 +1,4 @@
+﻿// TextField.cpp: CtextField类的实现。
 // TextField.cpp: implementation of the CTextField class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -9,6 +10,7 @@
 const char *kpTextFieldName = "TextField";
 
 //////////////////////////////////////////////////////////////////////
+// 构造/析构
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
@@ -21,7 +23,7 @@ CTextField::CTextField()
 	m_bMouseDownLastTime = false;
 
 	 
-	m_fSavedScrollSpeed	=
+	m_fSavedScrollSpeed	=			
 		m_fScrollSpeed = 0.0f;		// in Chars per Sec
 	m_fCurrentPosition	= 0.0f;
 	m_iStringPixels = 0;
@@ -36,6 +38,7 @@ bool InRect(int x, int y, const RECT &r);
 
 bool CTextField::StealsMouse(int x, int y) 
 {
+	// 这是一个注释
 	// this is a comment
 	if (isDisabled() || !m_bIsEditable)
 		return false;
@@ -50,6 +53,7 @@ int CTextField::ObjectCommand(const char *pCommand)
 
 	if(strcmp(pCommand, "SetString") == 0)
 	{
+		// 处理SetString命令
 		// process "SetString" command
 		m_string = L->GetStringArgument(3);
 		m_iStringPixels = 0;
@@ -62,6 +66,7 @@ int CTextField::ObjectCommand(const char *pCommand)
 	if(strcmp(pCommand, "AddString") == 0)
 	{
 		std::string aStr = L->GetStringArgument(3);
+		// 添加一个字符串到滚动列表
 		// this ADDS a string to the scrolling list
 		if(m_iStringPixels == 0)
 		{
@@ -80,6 +85,7 @@ int CTextField::ObjectCommand(const char *pCommand)
 
 	if(strcmp(pCommand, "GetString") == 0)
 	{
+		// 处理“GetString”命令
 		// process "GetString" command
 		L->PushString(m_string.c_str());
 		retVal = 1;
@@ -87,6 +93,7 @@ int CTextField::ObjectCommand(const char *pCommand)
 
 	if(strcmp(pCommand, "SetColor") == 0)
 	{
+		// 处理“SetColor”命令
 		// process "SetColor" command
 		int a,r,g,b;
 
@@ -99,13 +106,15 @@ int CTextField::ObjectCommand(const char *pCommand)
 
 	if(strcmp(pCommand, "Focus") == 0)
 	{
-		// process "SetString" command
+		// 处理“Focus”命令
+		// process "Focus" command
 		m_bKeyboardFocus = L->GetNumberArgument(3) != 0;
 	}
 
 	if(strcmp(pCommand, "SetEditability") == 0)
 	{
-		// process "SetString" command
+		// 处理“SetEditability”命令
+		// process "SetEditability" command
 		m_bIsEditable = L->GetNumberArgument(3) != 0;
 	}
 
@@ -114,6 +123,7 @@ int CTextField::ObjectCommand(const char *pCommand)
 
 bool CTextField::Render(void)
 {
+	// 万一有贴图载入调用基类
 	// call the base class in case there is a texture loaded
 	CGUIObject::Render(); 
 	if(m_pFont)
@@ -127,6 +137,7 @@ bool CTextField::Render(void)
 
 		if(m_bKeyboardFocus)
 		{
+			// 检测结尾是否需要光标
 			// check to see if we need a cursor at the end
 			if((timeGetTime() / 100) & 1)
 				orig += "|";
@@ -167,6 +178,7 @@ bool CTextField::KeyHit(int ascii)
 				unsigned char in = (unsigned char) ascii;
 				if(isprint(in))
 				{
+					// 添加字符到字符串
 					// add char to string
 					m_string += in;
 					CGUIManager::GetInstance()->SendEvent(GUI_KEY_PRESS, in, (float) m_ID);
@@ -184,10 +196,12 @@ bool CTextField::KeyHit(int ascii)
 
 bool CTextField::Update(float fSecsElapsed, CUserInterface *pParent) 
 {
+	// 调用父类
 	// call the parent class...
 	CGUIObject::Update(fSecsElapsed, pParent);
 
 #if 0
+	// 检测文本区域的鼠标点击面积和设置事件
 	// check of mouse clicked on the text field area and set event
 	int x, y, buttons;
 	g_pGUIBase->MouseStatus(x, y, buttons);
@@ -209,6 +223,7 @@ bool CTextField::Update(float fSecsElapsed, CUserInterface *pParent)
 	{
 		if(m_bMouseDownLastTime)
 		{
+			// 检测鼠标位置和设置状态
 			// check mouse position and set state
 			RECT r = GetScreenRect();
 			

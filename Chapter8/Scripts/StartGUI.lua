@@ -1,26 +1,26 @@
---=======================================
+ï»¿--=======================================
 -- (c) copyright 2004, Magic Lantern, Inc
 -- All Rights Reserved.  U.S.A.
 --=======================================
 --  filename: StartGUI.lua
 --  author: Mark Manyen
 --  created: Sept 17, 2004
---  descrip: Defines constants and globals£¨¶¨Òå³£Á¿ºÍÈ«¾ÖÁ¿£©
+--  descrip: Defines constants and globalsï¼ˆå®šä¹‰å¸¸é‡å’Œå…¨å±€é‡ï¼‰
 --=========================================--
 
--- ¶¨ÒåËùÓĞ½Å±¾µÄ³£Á¿Öµ
--- ±ê×¼LuaGUIÊÂ¼ş´úÂë
+-- å®šä¹‰æ‰€æœ‰è„šæœ¬çš„å¸¸é‡å€¼
+-- æ ‡å‡†LuaGUIäº‹ä»¶ä»£ç 
 -- define constant values for all scripts
 -- Standard LuaGUI event codes
 GUI_KEY_PRESS = 4
 
---²¼¶û³£Á¿
+--å¸ƒå°”å¸¸é‡
 --boolean contants
 YES = 1
 NO = 0
 NONE = 0
 
---ÔÚÊ¾ÀıÆÁÄ»¿ªÊ¼
+--åœ¨ç¤ºä¾‹å±å¹•å¼€å§‹
 --start in the example screen
 RunGUI("Chapter8.lua")
 

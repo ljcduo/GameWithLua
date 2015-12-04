@@ -1,3 +1,4 @@
+﻿// UserInterface.cpp: CUserInterface类的实现。
 // UserInterface.cpp: implementation of the CUserInterface class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -15,6 +16,7 @@ extern bool		g_bDebugMode;
 extern Font		*g_pDebugFont;
 
 //////////////////////////////////////////////////////////////////////
+// 构造/析构
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
@@ -61,6 +63,7 @@ void CUserInterface::SetGUIObjectPosition(unsigned int id, float fx, float fy, f
 	float th = fh / m_fTransH;
 #endif
 
+	// 如果传递负值，传递负平移值给GUIObject来处理基于像素比例的贴图
 	// if passed neg value, pass neg translation values for
 	// the GUIObject to deal with on a texture based pixel ratio
 	if(fw < 0.0f)
@@ -106,6 +109,7 @@ bool CUserInterface::KeyHit(int ascii)
 		it++;
 	}
 
+	// 如果我们去到这里，没有对象想要被按下，所以发送给脚本。
 	// if we got here, no objects wanted the keypress, so send it to the script
 	CGUIManager::GetInstance()->SendEvent(GUI_KEY_PRESS, ascii);
 	return true;
@@ -256,6 +260,7 @@ std::list<unsigned int> CUserInterface::SpriteCollision(unsigned int id)
 	CGUISprite *pSprite = (CGUISprite *)FindObject(id);
 	if(pSprite && (strcmp(pSprite->GetObjectTypeName(), kpSpriteName)==0))
 	{
+		// 这个传递的GUI对象是真正的精灵
 		// the passed GUI object is indeed a sprite
 		RECT rOne = pSprite->GetBoundingRect();
 		std::map<unsigned int,CGUIObject *>::iterator it = m_mapObjects.begin();
@@ -264,9 +269,11 @@ std::list<unsigned int> CUserInterface::SpriteCollision(unsigned int id)
 			bool bBoom = false;
 			if(((*it).first != id) && strcmp((*it).second->GetObjectTypeName(), kpSpriteName)==0)
 			{
+				// 这个和第一个不相同而且是一个精灵
 				// this one is not the same as the first and is a sprite
 				CGUISprite *pTarget = (CGUISprite *) (*it).second;
 				RECT rTwo = pTarget->GetBoundingRect();
+				// 检查是否有矩形碰撞
 				// see if the rects collide
 				if(InRect(rTwo.right, rTwo.top, rOne))
 				{

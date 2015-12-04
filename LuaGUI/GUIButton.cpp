@@ -1,3 +1,4 @@
+﻿// Button.cpp: CButton类的实现。
 // Button.cpp: implementation of the CButton class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -12,6 +13,7 @@ const char *kpButtonName = "Button";
 
 
 //////////////////////////////////////////////////////////////////////
+// 构造/析构
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
@@ -33,6 +35,8 @@ CButton::~CButton()
 		SAFE_DELETE(m_pButtonTextures[i]);
 	}
 
+	// m_pTexture如果不是NULL的话，基类会尝试delete它。
+	// 因为我们已经删掉我们的贴图，不要那样做。。
 	// the base class with try to delete m_pTexture if it is not NULL
 	// since we already killed all out textures, don't do that...
 	m_pTexture = NULL;
@@ -101,6 +105,7 @@ extern POINT g_mousePoint;
 bool CButton::Update(float fSecsElapsed, CUserInterface *pParent)
 {
 
+	// 调用基类来维护基础功能
 	// call the base class to preserve base functionality
 	if(!CGUIObject::Update(fSecsElapsed, pParent))
 		return false;
@@ -111,6 +116,7 @@ bool CButton::Update(float fSecsElapsed, CUserInterface *pParent)
 
 	if(m_buttonState != BUTTON_DISABLED)
 	{
+		// 检查鼠标位置，还有设置状态和贴图指针。
 		// check mouse position and set state and base texture pointer
 		RECT r = m_rHotSpot; //GetScreenRect();
 		
@@ -137,6 +143,7 @@ bool CButton::Update(float fSecsElapsed, CUserInterface *pParent)
 	{
 		if(oldState == BUTTON_SELECTED)
 		{
+			// 上次按钮被选中，现在不是了
 			// button was selected last time, now is not
 			CGUIManager::GetInstance()->SendEvent(GUI_EVENT_BUTTON_UP, m_ID);
 			retVal = false;
@@ -144,6 +151,7 @@ bool CButton::Update(float fSecsElapsed, CUserInterface *pParent)
 
 		if(m_buttonState == BUTTON_SELECTED)
 		{
+			// 过去没有被选中，现在被选中了
 			// was unselected and now is selected
 			CGUIManager::GetInstance()->SendEvent(GUI_EVENT_BUTTON_DOWN, m_ID);
 			retVal = false;
@@ -163,6 +171,7 @@ bool CButton::Update(float fSecsElapsed, CUserInterface *pParent)
 	}
 	else
 	{
+		// 旧状态 = 当前状态
 		// old state = current state
 		if((m_fButtonHoverCountdown > 0.0f) && (oldState == BUTTON_HOVER))
 		{

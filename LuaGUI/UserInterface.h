@@ -1,3 +1,4 @@
+﻿// UserInterface.h: CUserInterface类的接口。
 // UserInterface.h: interface for the CUserInterface class.
 //
 //////////////////////////////////////////////////////////////////////

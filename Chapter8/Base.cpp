@@ -24,7 +24,7 @@ typedef struct
 
 extern luaDef MyGlue[];
 
-// 静态函数维持DX计时和其他消失处理函数隐藏在DX9库中。
+// 静态函数维持DX计时和其他消息处理函数隐藏在DX9库中。
 // static function just to keep the DX timekeeping and other message handling 
 // functions hidden in the DX9 library. 
 static void	RenderStub(float fTime)
