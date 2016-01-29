@@ -156,6 +156,7 @@ bool CUserInterface::Render(void)
 
 			it++;
 		}
+
 #if 0
 		if(g_bDebugMode && g_pDebugFont)
 		{

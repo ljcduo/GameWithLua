@@ -33,7 +33,7 @@ WindowProc(HWND hWnd, unsigned uMsg, WPARAM wParam, LPARAM lParam)
 
                 case VK_INSERT:
 
-					// 
+					// ²åÈë¼üÍË³ö³ÌÐò
                     // exit the program on insert
 
                     DestroyWindow(hWnd);

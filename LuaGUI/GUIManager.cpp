@@ -1,3 +1,4 @@
+// GUIManager.cpp: CGUIManager类的实现。
 // GUIManager.cpp: implementation of the CGUIManager class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -28,6 +29,7 @@ typedef struct
 extern luaDef GUIGlue[];
 
 //////////////////////////////////////////////////////////////////////
+// 构造/析构
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
@@ -94,6 +96,8 @@ bool  CGUIManager::StartGUI(const char *pFilenameIn)
 	{
 		m_pCurrentUI = new CUserInterface;
 		m_GUIMap[pFilename] = m_pCurrentUI;
+		// 创建启动GUI
+		// 前缀加上scripts的路径名来载入该文件
 		// create the startup GUI
 		// prepend the scripts directory name to the filename for loading
 		char path[254];
@@ -204,7 +208,7 @@ void CGUIManager::ResChangeNotify(void)
 
 }
 
-
+//为GUI而设的Lua API
 //Lua API for GUI
 
 bool InRect(int x, int y, const RECT &r)
@@ -233,6 +237,7 @@ extern "C" int GUI_CreateItem(lua_State *L)
 
 		if(strcmp(type, kpSpriteName) == 0)
 		{
+			//创建精灵
 			//create a sprite
 			CGUISprite *pSprite = new CGUISprite;
 			pSprite->SetTexture((char *) lua->GetStringArgument(3));
@@ -241,6 +246,7 @@ extern "C" int GUI_CreateItem(lua_State *L)
 
 		if(strcmp(type, kpTextFieldName) == 0)
 		{
+			//创建文本区域
 			//create a Text Field
 			CTextField  *pTextField = new CTextField;
 			pTextField->SetTexture((char *) lua->GetStringArgument(3, NULL));
@@ -249,6 +255,7 @@ extern "C" int GUI_CreateItem(lua_State *L)
 
 		if(strcmp(type, kpButtonName) == 0)
 		{
+			//创建按钮
 			//create a button
 			CButton *pButton = new CButton;
 			char *norm	= (char *) lua->GetStringArgument(3, NULL);
@@ -425,6 +432,7 @@ static std::string findScript(const char *pFname)
 	fTest = fopen(strTestFile.c_str(), "r");
 	if(fTest == NULL)
 	{
+		//不是这个。。
 		//not that one...
 		strTestFile = (std::string) drive + dir + "Scripts\\" + fname + ".LUA";
 		fTest = fopen(strTestFile.c_str(), "r");
@@ -432,6 +440,7 @@ static std::string findScript(const char *pFname)
 
 	if(fTest == NULL)
 	{
+		//不是这个。。
 		//not that one...
 		strTestFile = (std::string) drive + dir + fname + ".LUB";
 		fTest = fopen(strTestFile.c_str(), "r");
@@ -439,6 +448,8 @@ static std::string findScript(const char *pFname)
 
 	if(fTest == NULL)
 	{
+		//不是这个。。
+		//不是这个。。
 		//not that one...
 		//not that one...
 		strTestFile = (std::string) drive + dir + fname + ".LUA";
@@ -498,6 +509,7 @@ extern "C" int GUI_GetCollisions(lua_State *L)
 	cLua *lua = CGUIManager::GetInstance()->GetLuaContext();
 	unsigned int id	= (unsigned int) lua->GetNumberArgument(1);
 
+	// 在栈中创建返回表
 	// create the return table on the stack 	
     lua_newtable (L);
 
@@ -518,6 +530,7 @@ extern "C" int GUI_GetCollisions(lua_State *L)
 		}
 	}
 
+	// 现在作为成员n添加整个表的数目(t.n)
 	// now add the number of entries in the table as member "n" (t.n)
 	lua_pushstring(L, "n");
 	lua_pushnumber(L, i-1);
@@ -532,6 +545,7 @@ extern "C" int GUI_HitTest(lua_State *L)
 	float x	= (float) lua->GetNumberArgument(1);
 	float y	= (float) lua->GetNumberArgument(2);
 
+	// 在栈中创建返回表
 	// create the return table on the stack 	
     lua_newtable (L);
 
@@ -552,6 +566,7 @@ extern "C" int GUI_HitTest(lua_State *L)
 		}
 	}
 
+	// 现在作为成员n添加整个表的数目(t.n)
 	// now add the number of entries in the table as member "n" (t.n)
 	lua_pushstring(L, "n");
 	lua_pushnumber(L, i-1);
@@ -579,6 +594,7 @@ luaDef GUIGlue[] =
   {"GetCollisions",			GUI_GetCollisions},
   {"HitTest",				GUI_HitTest},
 
+  // 脚本运行函数
   // Script running function
   {"RunScript",				BASE_RunScript},
   {"RunString",				BASE_RunString},

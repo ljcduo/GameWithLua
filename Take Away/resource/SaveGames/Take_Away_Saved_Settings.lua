@@ -1,6 +1,6 @@
 -- Take Away save settings file
 
--- File created on: 12/02/15 08:59:37
+-- File created on: 01/28/16 17:38:41
 
 --Key select settings
 gThrustKey = 32

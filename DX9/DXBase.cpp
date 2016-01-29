@@ -230,12 +230,18 @@ int DXBase::Run(void (*ptr)(float))
 {
     renderPtr=ptr;
 
-    LONGLONG cur_time; // current time
-    BOOL perf_flag=FALSE; // flag determining which timer to use
-    LONGLONG last_time=0; // time of previous frame
-    float time_elapsed; // time since previous frame
-    float time_scale; // scaling factor for time
+						//当前时间
+    LONGLONG cur_time;	// current time
+							// 标志决定哪一个计时器被使用
+    BOOL perf_flag=FALSE;	// flag determining which timer to use
+							// 上一帧的时间
+    LONGLONG last_time=0;	// time of previous frame
+							// 从上一帧经历的时间
+    float time_elapsed;		// time since previous frame
+						// 时间的缩放因子
+    float time_scale;	// scaling factor for time
 
+	// 选择计时器， 获得当前时间， 和计算时间缩放
     // select timer, get current time, and calculate time scale
 
     if (QueryPerformanceFrequency((LARGE_INTEGER *) &cur_time)) 
@@ -250,10 +256,12 @@ int DXBase::Run(void (*ptr)(float))
         last_time=timeGetTime();
     }
 
+	// 设置状态激活
     // set status as active
 
     active=TRUE;
 
+	// 现在我们已经准备接收windows消息处理
     // Now we're ready to recieve and process Windows messages.
 
     BOOL bGotMsg;
@@ -281,8 +289,11 @@ int DXBase::Run(void (*ptr)(float))
             } 
 			else 
 			{
+				// 没有消息，继续走并且处理一帧
 				// no message, go ahead and process a frame
 
+				// 使用合适的方法来获得时间
+				// 和计算自上一帧以来消逝的时间
                 // use the appropriate method to get time 
                 // and calculate elapsed time since last frame
 
@@ -291,14 +302,17 @@ int DXBase::Run(void (*ptr)(float))
                 else 
                     cur_time=timeGetTime();
 
+				// 计算消逝的时间
                 // calculate elapsed time
 
                 time_elapsed=(cur_time-last_time)*time_scale;
 
+				// 保存帧时间
                 // save frame time
 
                 last_time=cur_time;
 
+				// 更新正在播放的任何音乐
 				// update any music that is playing
 				std::map<int,OggPlayer *>::iterator it = m_MusicMap.begin();
 				while(it != m_MusicMap.end())
@@ -315,7 +329,7 @@ int DXBase::Run(void (*ptr)(float))
 					++it;
 				}
 
-
+				// 调用应用程序的渲染函数
 				// call the app's render function
                 if (renderPtr)
                     renderPtr(time_elapsed);
